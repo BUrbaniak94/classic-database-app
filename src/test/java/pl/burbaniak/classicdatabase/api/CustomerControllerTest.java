@@ -63,7 +63,7 @@ class CustomerControllerTest {
         customer.setState("Victoria");
         customer.setPostalCode("3004");
         customer.setCountry("Australia");
-        customer.setSalesRepEmployeeNumber(1611);
+        customer.setSalesRepEmployeeNumber(1611L);
         customer.setCreditLimit(117300.0);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/customer-srv/customers")

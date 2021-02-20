@@ -13,7 +13,7 @@ public class EmployeeDto {
     private String lastName;
     private String extension;
     private String email;
-    private String officeCode;
+    private Long officeCode;
     private String reportsTo;
     private String jobTitle;
 

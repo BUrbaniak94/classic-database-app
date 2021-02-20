@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "customers")
-@NoArgsConstructor @Getter @Setter @EqualsAndHashCode @ToString
+@NoArgsConstructor @Data
 public class Customer {
 
     @Id

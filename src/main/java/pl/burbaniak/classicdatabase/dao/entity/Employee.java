@@ -4,10 +4,12 @@ package pl.burbaniak.classicdatabase.dao.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "employees")
-@NoArgsConstructor @Getter @Setter @EqualsAndHashCode @ToString
+@NoArgsConstructor @Data
 public class Employee {
 
     @Id
@@ -20,6 +22,7 @@ public class Employee {
     private String officeCode;
     private String reportsTo;
     private String jobTitle;
+
 
     public Employee(Long employeeNumber, String firstName, String lastName, String extension, String email, String officeCode, String reportsTo, String jobTitle) {
         this.employeeNumber = employeeNumber;

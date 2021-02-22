@@ -3,6 +3,8 @@ package pl.burbaniak.classicdatabase.dao.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "productlines")
@@ -10,11 +12,13 @@ import javax.persistence.*;
 public class ProductLine {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private String productLine;
     private String textDescription;
     private String htmlDescription;
     private String image;
+    @OneToMany (mappedBy = "mappedProductLine")
+    private List<Product> products = new ArrayList<>();
 
     public ProductLine(String productLine, String textDescription, String htmlDescription, String image) {
         this.productLine = productLine;

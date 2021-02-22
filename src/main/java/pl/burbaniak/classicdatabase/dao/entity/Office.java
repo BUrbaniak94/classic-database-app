@@ -3,6 +3,8 @@ package pl.burbaniak.classicdatabase.dao.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "offices")
@@ -20,6 +22,9 @@ public class Office {
     private String country;
     private String postalCode;
     private String territory;
+    @OneToMany (mappedBy = "office")
+    private List<Employee> employess = new ArrayList<>();
+
 
     public Office(Long officeCode, String city, String phone, String addressLine1, String addressLine2, String state, String country, String postalCode, String territory) {
         this.officeCode = officeCode;

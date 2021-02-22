@@ -5,10 +5,12 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
-@NoArgsConstructor @Getter @Setter @EqualsAndHashCode @ToString
+@NoArgsConstructor @Data
 public class Order {
 
     @Id
@@ -20,6 +22,12 @@ public class Order {
     private String status;
     private String comments;
     private Long customerNumber;
+    @ManyToOne
+    @JoinColumn(name="customerNumber", insertable = false, updatable = false)
+    private Customer customer;
+    @OneToMany (mappedBy = "order")
+    private List<OrderDetails> orderDetails = new ArrayList<>();
+
 
     public Order(Long orderNumber, Timestamp orderDate, Timestamp requiredDate, Timestamp shippedDate, String status, String comments, Long customerNumber) {
         this.orderNumber = orderNumber;

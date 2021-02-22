@@ -19,7 +19,7 @@ public class CustomerDto {
     private String state;
     private String postalCode;
     private String country;
-    private int salesRepEmployeeNumber;
+    private Long salesRepEmployeeNumber;
     private double creditLimit;
 
     public static CustomerDto from(Customer customer){

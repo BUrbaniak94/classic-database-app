@@ -3,10 +3,12 @@ package pl.burbaniak.classicdatabase.dao.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
-@NoArgsConstructor @Getter @Setter @EqualsAndHashCode @ToString
+@NoArgsConstructor @Data
 public class Customer {
 
     @Id
@@ -22,10 +24,18 @@ public class Customer {
     private String state;
     private String postalCode;
     private String country;
-    private int salesRepEmployeeNumber;
+    private Long salesRepEmployeeNumber;
     private double creditLimit;
+    @ManyToOne
+    @JoinColumn( name="salesRepEmployeeNumber", referencedColumnName = "employeeNumber" ,
+            insertable = false, updatable = false)
+    private Employee employee;
+    @OneToMany (mappedBy = "customer")
+    private List<Payment> payments = new ArrayList<>();
+    @OneToMany (mappedBy = "customer")
+    private List<Order> orders = new ArrayList<>();
 
-    public Customer(Long customerNumber, String customerName, String contactLastName, String contactFirstName, String phone, String addressLine1, String addressLine2, String city, String state, String postalCode, String country, int salesRepEmployeeNumber, double creditLimit) {
+    public Customer(Long customerNumber, String customerName, String contactLastName, String contactFirstName, String phone, String addressLine1, String addressLine2, String city, String state, String postalCode, String country, Long salesRepEmployeeNumber, double creditLimit) {
         this.customerNumber = customerNumber;
         this.customerName = customerName;
         this.contactLastName = contactLastName;

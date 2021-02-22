@@ -4,10 +4,12 @@ package pl.burbaniak.classicdatabase.dao.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "employees")
-@NoArgsConstructor @Getter @Setter @EqualsAndHashCode @ToString
+@NoArgsConstructor @Data
 public class Employee {
 
     @Id
@@ -17,11 +19,17 @@ public class Employee {
     private String lastName;
     private String extension;
     private String email;
-    private String officeCode;
+    private Long officeCode;
     private String reportsTo;
     private String jobTitle;
+    @OneToMany(mappedBy = "employee")
+    private List<Customer> customers = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name="officeCode",insertable = false,updatable = false)
+    private Office office;
 
-    public Employee(Long employeeNumber, String firstName, String lastName, String extension, String email, String officeCode, String reportsTo, String jobTitle) {
+
+    public Employee(Long employeeNumber, String firstName, String lastName, String extension, String email, Long officeCode, String reportsTo, String jobTitle) {
         this.employeeNumber = employeeNumber;
         this.firstName = firstName;
         this.lastName = lastName;
